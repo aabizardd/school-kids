@@ -1,22 +1,25 @@
 @extends('layouts.main')
 @section('content')
-<!-- Start main-content -->
-<div class="main-content">
+    <!-- Start main-content -->
+    <div class="main-content">
 
-    @include('home.slider')
+        @include('home.slider')
 
-    @include('home.classes')
+        @include('home.tentang')
+        
+        @include('home.kurikulum')
+        
+        @include('home.classes')
 
-    @include('home.kurikulum')
 
-    @include('home.metodebelajar')
-    
-    @include('home.aktivitas')
+        @include('home.metodebelajar')
 
-    @include('home.gallery')
+        @include('home.aktivitas')
 
-    @include('home.blog')
+        @include('home.gallery')
 
-    <!-- end main-content -->
-</div>
+        {{-- @include('home.blog') --}}
+
+        <!-- end main-content -->
+    </div>
 @endsection

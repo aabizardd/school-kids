@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('nama_lengkap');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->enum('kelas', ['TK-A', 'TK-B', 'Playgroup']);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('nik');
@@ -27,6 +28,9 @@ class CreateStudentsTable extends Migration
             $table->string('pekerjaan_wali');
             $table->string('alamat');
             $table->string('telp_wa');
+            $table->string('form_pendaftaran');
+            $table->string('lembar_kesediaan');
+            $table->string('surat_pernyataan');
             $table->timestamps();
         });
     }
