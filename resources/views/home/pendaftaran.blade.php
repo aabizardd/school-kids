@@ -66,7 +66,7 @@
             <div class="col-lg-12">
                 <form action="/register" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <label for="kelas">Pilih Kelas</label>
                         <select id="kelas" name="kelas" class="form-control" required>
                             <option selected disabled>Pilih Kelas</option>
