@@ -120,6 +120,10 @@
                             placeholder="Pekerjaan Ayah/Ibu" required>
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
+                        {{-- <div id="map" style="width: 100%"></div> --}}
+                        <iframe id="maps" width="400" height="300" style="border:0" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade" hidden>
+                        </iframe>
                         <label for="telp_wa">No. Telp WA</label>
                         <input type="number" class="form-control" id="telp_wa" name="telp_wa" placeholder="No. Telp WA"
                             required>
@@ -140,4 +144,91 @@
         </div>
     </div>
     <!-- end main-content -->
+@endsection
+
+@section('addScript')
+    {{-- <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnzOiGhaW_G5QyGO_fugRXe5OV3UxFau8&callback=initAutocomplete&libraries=places&v=weekly"
+        defer></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <script>
+        $("#alamat").on("input", function() {
+            var address = $(this).val()
+            // Print entered value in a div box
+            $("#maps").show()
+            $("#maps").attr('src', `https://www.google.com/maps/embed/v1/place?key=AIzaSyAnzOiGhaW_G5QyGO_fugRXe5OV3UxFau8
+                    &q=${address}`)
+        });
+    </script>
+
+    {{-- <script>
+        function initAutocomplete() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: -33.8688,
+                    lng: 151.2195
+                },
+                zoom: 13,
+                mapTypeId: "roadmap",
+            });
+            // Create the search box and link it to the UI element.
+            const input = document.getElementById("alamat");
+            const searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+            let markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+                if (places.length == 0) {
+                    return;
+                }
+                // Clear out the old markers.
+                markers.forEach((marker) => {
+                    marker.setMap(null);
+                });
+                markers = [];
+                // For each place, get the icon, name and location.
+                const bounds = new google.maps.LatLngBounds();
+                places.forEach((place) => {
+                    if (!place.geometry || !place.geometry.location) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    const icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25),
+                    };
+                    // Create a marker for each place.
+                    markers.push(
+                        new google.maps.Marker({
+                            map,
+                            icon,
+                            title: place.name,
+                            position: place.geometry.location,
+                        })
+                    );
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+        window.initAutocomplete = initAutocomplete;
+    </script> --}}
 @endsection
