@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\Classes;
 use App\Models\Learning;
 use App\Models\Students;
+use Illuminate\Http\Request;
 
 class PendaftaranController extends Controller
 {
@@ -26,7 +25,7 @@ class PendaftaranController extends Controller
 
     public function store(Request $request)
     {
-        $suratPernyataanName = time() . '-' . $request->input('nama_lengkap')  . '-SURAT_PERNYATAAN.' . $request->file('surat_pernyataan')->getClientOriginalExtension();
+        $suratPernyataanName = time() . '-' . $request->input('nama_lengkap') . '-SURAT_PERNYATAAN.' . $request->file('surat_pernyataan')->getClientOriginalExtension();
 
         $formPendaftaranName = time() . '-' . $request->input('nama_lengkap') . '-FORM_PENDAFTARAN.' . $request->file('form_pendaftaran')->getClientOriginalExtension();
 
